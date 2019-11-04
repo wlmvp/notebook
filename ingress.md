@@ -9,12 +9,43 @@ Kubernetes没有为裸机群集提供网络负载均衡器（类型为LoadBalanc
 # MetalLB简介
 ## 简介
 
-官方网站：https://metallb.universe.tf/
-GitHub Repo：https://github.com/danderson/metallb
-![在这里插入图片描述](.\images\20191024155928524.png)
-MetalLB是使用标准路由协议的裸机Kubernetes集群的软负载均衡器，目前处于测试版本阶段，最新版本为v0.8.1。
 
-MetalLB旨在通过提供与标准网络设备集成的网络LB实现来纠正这种不平衡，以便裸机集群上的外部服务也“尽可能”地工作。即MetalLB能够帮助你在kubernetes中创建LoadBalancer类型的kubernetes服务。
+
+# **Ingress 控制器**
+
+这一节将从 Kubernetes 官方控制器开始，逐渐扩展到其他广为人知的 Ingress 控制器。
+
+## **Kubernetes Ingress Controller**
+
+github.com/kubernetes/ingress-nginx
+
+实现：Go/Lua（nginx 是用 C 写的）
+
+许可证：Apache 2.0
+
+Kubernetes 的“官方”控制器（之所以称为官方，是想把它区别于 NGINX 公司的控制器）。这是社区开发的控制器，它基于 nginx Web 服务器，并补充了一组用于实现额外功能的 Lua 插件。
+
+由于 NGINX 十分流行，再加上把它用作控制器时所需的修改较少，**它对于 K8s 普通工程师来说，可能是最简单和最直接的选择**。
+
+## **NGINX Ingress Controller**
+
+github.com/nginxinc/kubernetes-ingress
+
+实现：Go
+
+许可证：Apache 2.0
+
+这是 NGINX 公司开发的官方产品，它也有一个基于 NGINX Plus 的商业版。NGINX 的控制器具有很高的稳定性、持续的向后兼容性，且没有任何第三方模块。
+
+由于消除了 Lua 代码，和官方控制器相比，它保证了较高的速度，但也因此受到较大限制。相较之下，它的付费版本有更广泛的附加功能，如实时指标、JWT 验证、主动健康检查等。
+
+NGINX Ingress 重要的优势是对 TCP/UDP 流量的全面支持，最主要缺点是缺乏流量分配功能。
+
+## **其他Controller**
+
+其他比较关注度较高的还有如下的一些Ingress Controller：Kong Ingress，Traefik，HAProxy Ingress，Voyager，Contour，Istio Ingress，Ambassador，Gloo**，**Skipper。
+
+ ![img](.\images\f771ff4db28b5f02efe5122be7aee102.png) 
 
 ## 基本原理
 

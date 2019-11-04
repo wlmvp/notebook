@@ -1,9 +1,19 @@
 ﻿# 背景
 
+Kubernetes和容器对于有状态应用的支持不佳，因为有状态应用对某些外部资源（如远程存储、网络设备等）有着绑定性的依赖，有状态应用的多个实例之间往往有着拓扑关系，而所有的分布式应用几乎都是有状态应用。  
 
+在没有Operator之前，部署分布式应用需要编写一套复杂的管理脚本，学习大量与项目本身无关的运维知识，造成维护成本和使用门槛非常高。 
+
+Kubernetes Operator 已经成了开发和部署分布式应用的一项事实标准。 Kubernetes Operator 发布之初最大的意义，就在于它将分布式应用的使用门槛直接降到了最低。 
+
+现今 Kubernetes Operator 的意义已经远远超过了“分布式应用部署”的这个原始的范畴，已经成为了容器化时代应用开发与发布的一个全新途径。 
 
 
 # Operator简介
+Operator最初由CoreOS于2016年推出，并已被Red Hat和Kubernetes社区用作打包、部署和管理Kubernetes原生应用程序的方法。Kubernetes原生应用程序是一个部署在Kubernetes上的应用程序，使用Kubernetes API和众所周知的工具进行管理，如kubectl。 
+
+ Operator实现为自定义控制器，用于监视某些Kubernetes资源的显示、修改或删除。这些通常是Operator“拥有”的CustomResourceDefinition。在这些对象的spec属性中，用户声明应用程序或操作的所需状态。Operator的协调循环将选择这些，并执行所需的操作以实现所需的状态。 
+
 Kubernetes 作为领先的容器编排项目之所以如此成功，其中一个原因就在于其可扩展性。借助[自定义资源](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources)，开发者可以扩展  Kubernetes API 以管理超出原生对象范围外的资源（例如，pod 和服务）。此外，Kubernetes Go Client  提供了强大的资源库，用于为自定义资源编写*控制器*。控制器实施闭环控制逻辑，通过持续运行对资源的期望状态与所观测到的状态进行协调。
 
 Operator将特定于应用程序的控制器与相关自定义资源组合在一起，编撰特定领域的知识，用于管理资源生命周期。第一组  Operator 起初聚焦于 Kubernetes 中运行的有状态服务，但近年来，Operator 的范围越来越广泛，如今社区为各种广泛用例构建的  Operator 数量正与日俱增。例如，[OperatorHub.io](https://operatorhub.io/) 提供了一个社区  Operator 目录，用于处理各种不同种类的软件和服务。

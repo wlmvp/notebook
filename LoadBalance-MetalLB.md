@@ -207,3 +207,7 @@ From 192.168.92.57: icmp_seq=4 Redirect Host(New nexthop: 192.168.92.201)
 
 到这里metallb loadbalancer部署完成，你可以定义kubernetes dashboard，granafa dashboard等各种应用服务，以loadbalancer的方式直接访问，不是一般的方便。
 
+## 补充
+
+ 除了这里提到的一点点简单配置之外，Metallb 的配置能力还是比较强大的，这点可以参考官网，其中谈及了不少较为务实的案例，另外还提到了部分 Issue 供用户参考。 
+
