@@ -86,3 +86,21 @@ Environment="HTTPS_PROXY=socks5://127.0.0.1:1080"
 
 配置好上述一般配置加github配置即可
 
+另外，无需科学上网，设置如下代理即可
+
+```
+https://goproxy.io
+```
+
+```
+https://goproxy.cn
+```
+
+具体设置如下：
+
+```
+# Enable the go modules feature
+$env:GO111MODULE="on"
+# Set the GOPROXY environment variable
+$env:GOPROXY="https://goproxy.cn"
+```
