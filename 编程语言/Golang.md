@@ -1,16 +1,33 @@
-## Python3安装
+## Golang安装
 
-```bash
-$ wget https://www.python.org/ftp/python/3.8.0/Python-3.8.0.tgz
-$ tar -zxvf Python-3.8.0.tgz
-$ cd Python-3.8.0
-$ ./configure --prefix=/usr/local/python3
-$ make && make install
-$ ln -s /usr/local/python3/bin/python3.8 /usr/bin/python3
-$ python3 -V
-Python 3.8.0
-```
+下载 Go 语言文件
 
-如报错：zipimport.ZipImportError: can't decompress data; zlib not available
+    wget https://studygolang.com/dl/golang/go1.11.linux-amd64.tar.gz
 
-则安装改lib依赖：yum -y install zlib* 
+下载地址：https://studygolang.com/dl
+
+解压二进制文件到 /usr/local 目录
+
+    tar -xzf go1.11.linux-amd64.tar.gz -C /usr/local
+
+使用 vi 在环境变量配置文件  /etc/profile 中增加如下内容：
+
+    export PATH=$PATH:/usr/local/go/bin
+
+检查 Go 语言版本
+
+    go version
+
+定义 GOPATH 环境变量到 workspace 目录
+
+    export GOPATH=$HOME/workspace
+
+
+
+## Golang使用笔记
+
+如果项目不在GOPATH下面，并且自带mod，vendor下面的代码不起作用。
+
+
+
+ 项目带Makefile时，构建方式为：make build 

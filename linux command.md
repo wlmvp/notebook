@@ -1,27 +1,30 @@
-## docker hub加速访问设置
-
-1.修改或创建容器
+## 查看端口
 
 ```bash
-$ cat /etc/shadowsocks.json 
-{ "registry-mirrors" :["https://docker.mirrors.ustc.edu.cn"]}
+netstat -ntlp   //查看当前所有tcp端口·
+netstat -ntulp |grep 80   //查看所有80端口使用情况·
+netstat -an | grep 3306   //查看所有3306端口使用情况·
+查看一台服务器上面哪些服务及端口
+netstat  -lanp
+查看一个服务有几个端口。比如要查看mysqld
+ps -ef |grep mysqld
+查看某一端口的连接数量,比如3306端口
+netstat -pnt |grep :3306 |wc
+查看某一端口的连接客户端IP 比如3306端口
+netstat -anp |grep 3306
 ```
 
+查找字符串的文件
 
-国内较快的镜像原地址:
-
-#Docker 官方中国区:https://registry.docker-cn.com
-#网易    http://hub-mirror.c.163.com
-#ustc中国科技大学   https://docker.mirrors.ustc.edu.cn
-
-行内可以修改为 http://dockerhub.icbc:5000
-
-2.重启docker，就可以非常快速的拉取所需的镜像
-
-```bash
-$ systemctl daemon-reload
-$ systemctl restart docker
 ```
+grep -rin "hello,world!" ./
 
-## 
+./ : 表示路径为[当前目录](http://www.baidu.com/s?wd=当前目录&tn=SE_PcZhidaonwhc_ngpagmjz&rsv_dl=gh_pc_zhidao).
+
+-r 是递归查找
+
+-n 是显示行号 
+
+i,忽略大小写
+```
 
